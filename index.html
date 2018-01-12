@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Préstamos Bind</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/bind.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div id="prestamos" class="container">
+        <form>
+            <div class="row row-sep">
+                    <label class="col-md-2"><strong>Monto solicitado:</strong></label>
+                    <input class="col-md-2 text-right" type="text" name="txtMontoSolicitado" id="txtMntSol" required />
+            </div>
+            <div class="row row-sep">
+                <label class="col-md-2"><strong>Sueldo bruto:</strong></label>
+                <input type="text" class="col-md-2 text-right" name="txtSueldoBruto" id="txtSueldoBruto" required />
+            </div>
+            <div class="row row-sep">
+                <label class="col-md-2"><strong>Cuotas:</strong></label>
+                <input type="number" class="text-right col-md-2" :min="0" :maxlenght="6" name="txtCuotas" id="txtCuotas" required />
+            </div>         
+            <div class="row text-right row-sep">
+                <input type="submit" value="Aceptar" class="btn btn-success">   
+            </div>            
+        </form>
+        <hr>
+            {{textTest}}
+        <!-- Segunda Grilla -->
+        <div class="row">
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+    <script src="./src/app.js"></script>
+</body>
+</html>
