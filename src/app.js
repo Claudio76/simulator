@@ -1,16 +1,17 @@
 new Vue({
     el: "#prestamos",
 
-    ready: function(){
+    created: function(){
         this.$http.get("./src/config/properties.json").then(response =>{
             var data = response.body;
+            this.tnaConvenio = 23;
             console.log(response.body);
         });
     },
 
     data: {
         textTest : "Texto de prueba para VueJs",
-        tnaconvenio: 2
+        tnaConvenio: 2
     },
 
     methods:{}
