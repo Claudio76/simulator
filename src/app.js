@@ -4,7 +4,7 @@ new Vue({
     created: function(){
         this.$http.get("./src/config/properties.json").then(response =>{
             var data = response.body;
-            this.tnaConvenio = 23;
+            this.tnaConvenio = data.tnaConvenio;
             console.log(response.body);
         });
     },
