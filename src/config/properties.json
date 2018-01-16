@@ -1,4 +1,6 @@
 {
-    "tnaConvenio": "12",
-    "tnaOutConvenio" : "24"
+    "tnaConvenio": 0.29,
+    "tnaOutConvenio" : 0.29,
+    "temIvaConvenio": 2.38,
+    "temIvaOutConvenio": 2.38
 }
