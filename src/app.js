@@ -73,6 +73,15 @@ new Vue({
 
         tnaOutConvenioScreen: function(){
             return Number.parseFloat(this.tnaOutConvenio * 100).toFixed(2);
+        },
+
+        validarCapitalSolicitadoOutConv: function(){
+            let capitalMaximo = this.sueldoBruto * cantSueldBrutoOutConvenio;
+            if(capitalMaximo < this.capitalSolic){
+                return true;
+            }else{
+                return false;
+            }
         }
         
     }
