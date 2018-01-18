@@ -29,9 +29,39 @@
                 <input type="submit" value="Aceptar" class="btn btn-success">   
             </div>            
         </form>
-        <hr>
             {{textTest}} - {{tnaConvenio}} - {{importeConvenio}} - {{importeOutConvenio}}
         <!-- Segunda Grilla -->
+        <div class="container">
+            <table class="table table-hover table-striped">          
+                    <!-- Aplicadas en las celdas (<td> o <th>) -->
+                <tr class="clearfix">
+                  <th><label><strong>Tasas e importes</strong></label></th>
+                  <th><label><strong>Convenio</strong></label></th>
+                  <th><label><strong>Fuera de convenio</strong></label></th>
+                </tr>
+                <tr class="clearfix">
+                    <td><label><strong>T.N.A.</strong></label></td>
+                    <td>{{tnaConvenioScreen}}%</td>
+                    <td>{{tnaOutConvenioScreen}}%</td>
+                </tr>
+                <tr class="clearfix">
+                    <td><label><strong>Tem. I.V.A. incl.</strong></label></td>
+                    <td>{{temIvaConvenio}}%</td>
+                    <td>{{temIvaOutConvenio}}%</td>
+                </tr>
+                <tr class="clearfix">
+                    <td><label><strong>Importe cuota mensual</strong></label></td>
+                    <td>${{importeConvenio}}.-</td>
+                    <td>${{importeOutConvenio}}.-</td>
+                </tr>
+                <tr class="clearfix">
+                    <td><label><strong>Seguro</strong></label></td>
+                    <td>${{seguroConvenio}}.-</td>
+                    <td>${{seguroOutConvenio}}.-</td>
+                </tr>
+            </table>    
+        </div>
+<!-- 
         <div class="row">
             <div class="clearfix">
                 <label class="col-md-2"><strong>Tasas e importes</strong></label>
@@ -59,6 +89,7 @@
                 <input type="number" id="seguroOutConv" class="col-md-2 text-right row-2-grid" readonly/>
             </div>
         </div>
+-->
         <!-- Tercera grilla -->
         <div class="row">
             <div class="clearfix">

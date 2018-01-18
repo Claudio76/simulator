@@ -5,6 +5,9 @@ new Vue({
         this.$http.get("./src/config/properties.json").then(response =>{
             var data = response.body;
             this.tnaConvenio = data.tnaConvenio;
+            this.tnaOutConvenio = data.tnaOutConvenio;
+            this.temIvaConvenio = data.temIvaConvenio;
+            this.temIvaOutConvenio = data.temIvaOutConvenio;
             console.log(response.body);
         });
     },
@@ -62,6 +65,14 @@ new Vue({
 
         importeOutConvenio: function(){
             return Number.parseFloat(this.cuotaMensualConv = (1 + (this.tnaConvenio / 12)) * (this.capitalSolic / this.plazo)).toFixed(2);
+        },
+
+        tnaConvenioScreen: function(){
+            return Number.parseFloat(this.tnaConvenio * 100).toFixed(2);
+        },
+
+        tnaOutConvenioScreen: function(){
+            return Number.parseFloat(this.tnaOutConvenio * 100).toFixed(2);
         }
         
     }
