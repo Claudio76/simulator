@@ -58,6 +58,10 @@ new Vue({
     computed:{
         importeConvenio: function(){
             return Number.parseFloat(this.cuotaMensualConv = (1 + (this.tnaConvenio / 12)) * (this.capitalSolic / this.plazo)).toFixed(2);
+        },
+
+        importeOutConvenio: function(){
+            return Number.parseFloat(this.cuotaMensualConv = (1 + (this.tnaConvenio / 12)) * (this.capitalSolic / this.plazo)).toFixed(2);
         }
         
     }

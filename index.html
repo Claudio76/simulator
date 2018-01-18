@@ -15,22 +15,22 @@
         <form>
             <div class="row row-sep">
                     <label class="col-md-2"><strong>Monto solicitado:</strong></label>
-                    <input class="col-md-2 text-right" type="text" name="txtMontoSolicitado" id="txtMntSol" v-model="capitalSolic" required />
+                    <input class="col-md-2 text-right" type="text" name="txtMontoSolicitado" id="txtMntSol" v-model.number="capitalSolic" required />
             </div>
             <div class="row row-sep">
                 <label class="col-md-2"><strong>Sueldo bruto:</strong></label>
-                <input type="text" class="col-md-2 text-right" name="txtSueldoBruto" id="txtSueldoBruto" v-model="sueldoBruto" required />
+                <input type="text" class="col-md-2 text-right" name="txtSueldoBruto" id="txtSueldoBruto" v-model.number="sueldoBruto" required />
             </div>
             <div class="row row-sep">
                 <label class="col-md-2"><strong>Cuotas:</strong></label>
-                <input type="number" class="text-right col-md-2" :min="0" :maxlenght="6" name="txtCuotas" id="txtCuotas" v-model="plazo" required />
+                <input type="number" class="text-right col-md-2" min="1" max="60" name="txtCuotas" id="txtCuotas" v-model.number="plazo" required />
             </div>         
             <div class="row text-right row-sep">
                 <input type="submit" value="Aceptar" class="btn btn-success">   
             </div>            
         </form>
         <hr>
-            {{textTest}} - {{tnaConvenio}} - {{importeConvenio}}
+            {{textTest}} - {{tnaConvenio}} - {{importeConvenio}} - {{importeOutConvenio}}
         <!-- Segunda Grilla -->
         <div class="row">
             <div class="clearfix">
@@ -38,25 +38,25 @@
                 <label class="col-md-2"><strong>Convenio</strong></label>
                 <label class="col-md-2"><strong>Fuera de convenio</strong></label>
             </div>
-            <div class="clearfix">
+            <div class="clearfix row-sep">
                 <label class="col-md-2"><strong>T.N.A.</strong></label>
-                <input type="number" id="tnaConv" class="col-md-2" readonly/>
-                <input type="number" id="tnaOutConv" class="col-md-2" readonly/>
+                <input type="number" id="tnaConv" class="col-md-2 text-right" readonly/>
+                <input type="number" id="tnaOutConv" class="col-md-2 text-right row-2-grid" readonly/>
             </div>
-            <div class="clearfix">
+            <div class="clearfix row-sep">
                 <label class="col-md-2"><strong>Tem. I.V.A. incl.</strong></label>
-                <input type="number" id="temIvaConv" class="col-md-2" readonly/>
-                <input type="number" id="temIvaOutConv" class="col-md-2" readonly/>
+                <input type="number" id="temIvaConv" class="col-md-2 text-right" readonly/>
+                <input type="number" id="temIvaOutConv" class="col-md-2 text-right row-2-grid" readonly/>
             </div>
-            <div class="clearfix">
+            <div class="clearfix row-sep">
                 <label class="col-md-2"><strong>Importe cuota mensual</strong></label>
-                <input type="number" id="importeConv" class="col-md-2" readonly/>
-                <input type="number" id="importeOutConv" class="col-md-2" readonly/>
+                <input type="text" id="importeConv" class="col-md-2 text-right" value="0" readonly/>
+                <input type="text" id="importeOutConv" class="col-md-2 text-right row-2-grid" value="0" readonly />{{importeOutConvenio}}
             </div>
-            <div class="clearfix">
+            <div class="clearfix row-sep">
                 <label class="col-md-2"><strong>Seguro</strong></label>
-                <input type="number" id="seguroConv" class="col-md-2" readonly/>
-                <input type="number" id="seguroOutConv" class="col-md-2" readonly/>
+                <input type="number" id="seguroConv" class="col-md-2 text-right" readonly />
+                <input type="number" id="seguroOutConv" class="col-md-2 text-right row-2-grid" readonly/>
             </div>
         </div>
         <!-- Tercera grilla -->
@@ -64,11 +64,11 @@
             <div class="clearfix">
                 <label class="col-md-2"><strong>Couta máxima permitida</strong></label>
             </div>
-            <div class="clearfix">
+            <div class="clearfix row-sep">
                 <label class="col-md-2"><strong>Convenio</strong></label>
                 <input type="number" id="coutaMaxConv" readonly>
             </div>
-            <div class="clearfix">
+            <div class="clearfix row-sep    ">
                 <label class="col-md-2"><strong>Fuera de convenio</strong></label>
                 <input type="number" id="coutaMaxOutConv" readonly>
             </div>
