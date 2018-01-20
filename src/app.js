@@ -8,54 +8,67 @@ new Vue({
             this.tnaOutConvenio = data.tnaOutConvenio;
             this.temIvaConvenio = data.temIvaConvenio;
             this.temIvaOutConvenio = data.temIvaOutConvenio;
+            this.cantSueldBrutoConvenio = data.cantSueldBrutoConvenio;
+            this.cantSueldBrutoOutConvenio = data.cantSueldBrutoOutConvenio;
             console.log(response.body);
         });
     },
 
     data: {
-        textTest : "Texto de prueba para VueJs",
+        textTest : "Texto de prueba para VueJs", //Este tiene que volar.
+        
+        //Vienen de properties.
         tnaConvenio: 2,
         tnaOutConvenio: 2,
         temIvaConvenio: 3,
         temIvaOutConvenio: 3,
+        cantSueldBrutoConvenio: 6,
+        cantSueldBrutoOutConvenio: 7,
+
         cuotaMensualConv: 4,
         cuotaMensualOutConv: 4,
-        seguroConvenio: 5,
-        seguroOutConvenio: 5,
-        capitalSolic: 1000,
+
+        seguroConvenio: 5, //Hay que calcularlo
+        seguroOutConvenio: 5, //Hay que calcularlo
+
+        showIcon: false,
+        
+        //Campos a completar por el usuario.
+        capitalSolic: 1000, 
         sueldoBruto: 10000,
         plazo:2,
+
         convenio: 0,
         outConvenio: 0,
-        cantSueldBrutoConvenio: 6,
-        cantSueldBrutoOutConvenio: 7
+
+        montoConvenioStatus: '',
+        montoOutConvenioStatus: ''
     },
 
     methods:{
         validarCapitalSolicitadoConv: function(){
-            let capitalMaximo = this.sueldoBruto * cantSueldBrutoConvenio;
+            let capitalMaximo = this.sueldoBruto * this.cantSueldBrutoConvenio;
             if(capitalMaximo < this.capitalSolic){
-                return true;
+                this.montoConvenioStatus = false;
             }else{
-                return false;
+                this.montoConvenioStatus = true;
             }
         },
 
         validarCapitalSolicitadoOutConv: function(){
-            let capitalMaximo = this.sueldoBruto * cantSueldBrutoOutConvenio;
+            let capitalMaximo = this.sueldoBruto * this.cantSueldBrutoOutConvenio;
             if(capitalMaximo < this.capitalSolic){
-                return true;
+                this.montoOutConvenioStatus = false;
             }else{
-                return false;
+                this.montoOutConvenioStatus = true;
             }
         },
 
-        validarImporteConvenio: function(){
-            //let importeMensual = (1 + (tnaConvenio / 12)) * (this.capitalSolic / this.plazo);
-        },
-
-        validarImporteOutConvenio: function(){},
-
+        validar: function(){
+            this.validarCapitalSolicitadoConv();
+            this.validarCapitalSolicitadoOutConv();
+            this.showIcon = true;
+        }
     },
 
     computed:{
@@ -75,13 +88,8 @@ new Vue({
             return Number.parseFloat(this.tnaOutConvenio * 100).toFixed(2);
         },
 
-        validarCapitalSolicitadoOutConv: function(){
-            let capitalMaximo = this.sueldoBruto * cantSueldBrutoOutConvenio;
-            if(capitalMaximo < this.capitalSolic){
-                return true;
-            }else{
-                return false;
-            }
+        calculaImporteMaximoConvenio: function(){
+            return this.sueldoBruto * this.cantSueldBrutoConvenio;
         }
         
     }
