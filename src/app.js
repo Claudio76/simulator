@@ -1,3 +1,7 @@
+Vue.component('modal', {
+    template: '#modal-template'
+  });
+
 new Vue({
     el: "#prestamos",
 
@@ -32,6 +36,7 @@ new Vue({
         seguroOutConvenio: 5, //Hay que calcularlo
 
         showIcon: false,
+        showModal: false,
         
         //Campos a completar por el usuario.
         capitalSolic: 1000, 

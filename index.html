@@ -15,18 +15,19 @@
     <div id="prestamos" class="container">
         <form action="" @submit.prevent="">
             <div class="row row-sep">
-                    <label class="col-md-2"><strong>Monto solicitado:</strong></label> 
+                    <label class="col-md-2"><strong>Monto solicitado:</strong></label>
+                    <input class="col-md-2 text-right row-2-grid" type="number" name="txtMontoSolicitado" id="txtMntSol" v-model.number="capitalSolic" required />
+                    <i class="fa fa-question-circle fa-2x" aria-hidden="true" @click="showModal = true"></i>
                     <span v-show="showIcon">
-                        <i v-if="montoConvenioStatus" key="outConvVal" class="background-green" aria-hidden="true"><i class="fa fa-check-circle">Convenio</i></i>
-                        <i v-else key="outConvVal" class="background-red" aria-hidden="true"><i class="fa fa-times fa-2x"></i></i>
+                        <i v-if="montoConvenioStatus" key="convVal" class="background-green" aria-hidden="true"><i class="fa fa-check-circle">Convenio</i></i>
+                        <i v-else key="convVal" class="background-red" aria-hidden="true"><i class="fa fa-times fa-2x"></i></i>
                         <i v-if="montoOutConvenioStatus" key="outConvVal" class="background-green" aria-hidden="true"><i class="fa fa-check-circle"> Fuera de convenio</i></i>
                         <i v-else key="outConvVal" class="background-red" aria-hidden="true"><i class="fa fa-times fa-2x"></i></i>
                     </span>
-                    <input class="col-md-2 text-right" type="text" name="txtMontoSolicitado" id="txtMntSol" v-model.number="capitalSolic" required />
             </div>
             <div class="row row-sep">
                 <label class="col-md-2"><strong>Sueldo bruto:</strong></label>
-                <input type="text" class="col-md-2 text-right" name="txtSueldoBruto" id="txtSueldoBruto" v-model.number="sueldoBruto" required />
+                <input type="number" class="col-md-2 text-right" name="txtSueldoBruto" id="txtSueldoBruto" v-model.number="sueldoBruto" required />
             </div>
             <div class="row row-sep">
                 <label class="col-md-2"><strong>Cuotas:</strong></label>
@@ -81,9 +82,55 @@
                 <input type="number" id="coutaMaxOutConv" readonly>
             </div>
         </div>
+
+        <!-- modal -->
+        <modal v-if="showModal" @close="showModal = false">
+            <!--
+              you can use custom content here to overwrite
+              default content
+            -->
+            <h3 slot="header">Condiciones</h3>
+        </modal>
+
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.3.4/vue-resource.js"></script>
     <script src="./src/app.js"></script>
 </body>
 </html>
+
+<!-- template for the modal component -->
+<script type="text/x-template" id="modal-template">
+    <transition name="modal">
+      <div class="modal-mask">
+        <div class="modal-wrapper">
+          <div class="modal-container">
+  
+            <div class="modal-header">
+              <slot name="header">
+                Condiciones de préstamo
+              </slot>
+            </div>
+  
+            <div class="modal-body">
+              <slot name="body">
+                <ul>
+                    <li>El monto solicitado no debe superar la cantidad de sueldos brutos establecidos.</li>
+                    <li>La cantidad de cuotas debe ser entre 2 y 60 meses.</li>
+                    <li>El importe de la cuota no debe superar el 30% del sueldo bruto.</li>
+                </ul>
+              </slot>
+            </div>
+  
+            <div class="modal-footer">
+              <slot name="footer">
+                <button class="modal-default-button btn btn-info" @click="$emit('close')">
+                  OK
+                </button>
+              </slot>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </script>
