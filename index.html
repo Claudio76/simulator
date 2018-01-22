@@ -17,12 +17,15 @@
             <div class="row row-sep">
                     <label class="col-md-2"><strong>Monto solicitado:</strong></label>
                     <input class="col-md-2 text-right row-2-grid" type="number" name="txtMontoSolicitado" id="txtMntSol" v-model.number="capitalSolic" required />
-                    <i class="fa fa-question-circle fa-2x" aria-hidden="true" @click="showModal = true"></i>
+                    <i class="fa fa-info-circle fa-2x" aria-hidden="true" @click="showModal = true"></i>
                     <span v-show="showIcon">
-                        <i v-if="montoConvenioStatus" key="convVal" class="background-green" aria-hidden="true"><i class="fa fa-check-circle">Convenio</i></i>
-                        <i v-else key="convVal" class="background-red" aria-hidden="true"><i class="fa fa-times fa-2x"></i></i>
+                        <i v-if="montoConvenioStatus && montoOutConvenioStatus" key="convVal" class="background-green" aria-hidden="true"><i class="fa fa-check-circle fa-2x"></i></i>
+                        <i v-if="!montoConvenioStatus" key="convNotVal" class="background-red" aria-hidden="true"><i class="fa fa-times">Convenio - Máximo {{cantSueldBrutoConvenio}} sueldos brutos</i></i>
+                        <i v-if="!montoOutConvenioStatus" key="outConvNotVal" class="background-red" aria-hidden="true"><i class="fa fa-times">Fuera de convenio  - Máximo {{cantSueldBrutoOutConvenio}} sueldos brutos</i></i>
+                        <!-- 
                         <i v-if="montoOutConvenioStatus" key="outConvVal" class="background-green" aria-hidden="true"><i class="fa fa-check-circle"> Fuera de convenio</i></i>
                         <i v-else key="outConvVal" class="background-red" aria-hidden="true"><i class="fa fa-times fa-2x"></i></i>
+                        -->
                     </span>
             </div>
             <div class="row row-sep">
@@ -81,6 +84,13 @@
                 <label class="col-md-2"><strong>Fuera de convenio</strong></label>
                 <input type="number" id="coutaMaxOutConv" readonly>
             </div>
+        </div>
+
+        <div class="clearfix">
+            <label class="label label-blue col-md-12 text-center"><strong>Atención: </strong>El simulador de préstamos 
+                <span class="subrayado">no es un formulario</span>. Los cálculos son siempre 
+                <span class="subrayado">aproximados y no podrán tomarse como definitivos.</span>
+            </label>
         </div>
 
         <!-- modal -->

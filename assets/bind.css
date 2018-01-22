@@ -7,6 +7,14 @@
     margin-right: 10px;
 }
 
+.subrayado{
+  text-decoration: underline;
+}
+
+.label-blue{
+  color: blue;
+}
+
 .background-green{
     color: green;
 }
