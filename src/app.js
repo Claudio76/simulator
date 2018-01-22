@@ -32,11 +32,10 @@ new Vue({
         cuotaMensualConv: 4,
         cuotaMensualOutConv: 4,
 
-        seguroConvenio: 5, //Hay que calcularlo
-        seguroOutConvenio: 5, //Hay que calcularlo
-
         showIcon: false,
         showModal: false,
+        importeValidConv: false,
+        importeValidOutConv: false,
         
         //Campos a completar por el usuario.
         capitalSolic: 1000, 
@@ -47,11 +46,13 @@ new Vue({
         outConvenio: 0,
 
         montoConvenioStatus: '',
-        montoOutConvenioStatus: ''
+        montoOutConvenioStatus: '',
+        topeMaxConvenio:0,
+        topeMaxOutConvenio:0
     },
 
     methods:{
-        validarCapitalSolicitadoConv: function(){
+        capitalSoliConvIsValid: function(){
             let capitalMaximo = this.sueldoBruto * this.cantSueldBrutoConvenio;
             if(capitalMaximo < this.capitalSolic){
                 this.montoConvenioStatus = false;
@@ -60,7 +61,7 @@ new Vue({
             }
         },
 
-        validarCapitalSolicitadoOutConv: function(){
+        capitalSoliOutConvIsValid: function(){
             let capitalMaximo = this.sueldoBruto * this.cantSueldBrutoOutConvenio;
             if(capitalMaximo < this.capitalSolic){
                 this.montoOutConvenioStatus = false;
@@ -70,9 +71,29 @@ new Vue({
         },
 
         validar: function(){
-            this.validarCapitalSolicitadoConv();
-            this.validarCapitalSolicitadoOutConv();
+            this.capitalSoliConvIsValid();
+            this.capitalSoliOutConvIsValid();
+            this.importeConvIsValid();
+            this.importeOutConvIsValid();
             this.showIcon = true;
+        },
+
+        importeConvIsValid: function(){
+            this.topeMaxConvenio = (this.sueldoBruto / 100) * 30;
+            if(this.importeConvenio > this.topeMaxConvenio){
+                return this.importeValidConv = false;
+            }else{
+                return this.importeValidConv = true;
+            }
+        },
+
+        importeOutConvIsValid: function(){
+            this.topeMaxOutConvenio = (this.sueldoBruto / 100) * 30;
+            if(this.importeOutConvenio > this.topeMaxOutConvenio){
+                return this.importeValidOutConv = false;
+            }else{
+                return this.importeValidOutConv = true;
+            }
         }
     },
 
@@ -95,6 +116,14 @@ new Vue({
 
         calculaImporteMaximoConvenio: function(){
             return this.sueldoBruto * this.cantSueldBrutoConvenio;
+        },
+
+        seguroConv: function(){
+            return Number.parseFloat((this.capitalSolic/100)* 0.5).toFixed(2);
+        },
+
+        seguroOutConv: function(){
+            return Number.parseFloat((this.capitalSolic/100)* 0.5).toFixed(2);
         }
         
     }

@@ -17,7 +17,7 @@
             <div class="row row-sep">
                     <label class="col-md-2"><strong>Monto solicitado:</strong></label>
                     <input class="col-md-2 text-right row-2-grid" type="number" name="txtMontoSolicitado" id="txtMntSol" v-model.number="capitalSolic" required />
-                    <i class="fa fa-info-circle fa-2x" aria-hidden="true" @click="showModal = true"></i>
+                    <i class="fa fa-info-circle fa-2x label-blue" aria-hidden="true" @click="showModal = true"></i>
                     <span v-show="showIcon">
                         <i v-if="montoConvenioStatus && montoOutConvenioStatus" key="convVal" class="background-green" aria-hidden="true"><i class="fa fa-check-circle fa-2x"></i></i>
                         <i v-if="!montoConvenioStatus" key="convNotVal" class="background-red" aria-hidden="true"><i class="fa fa-times">Convenio - Máximo {{cantSueldBrutoConvenio}} sueldos brutos</i></i>
@@ -61,13 +61,23 @@
                 </tr>
                 <tr class="clearfix">
                     <td><label><strong>Importe cuota mensual</strong></label></td>
-                    <td>${{importeConvenio}}.-</td>
-                    <td>${{importeOutConvenio}}.-</td>
+                    <td>${{importeConvenio}}.- 
+                        <span v-show="showIcon">
+                            <i v-if="importeValidConv" key="impValConv" class="background-green" aria-hidden="true"><i class="fa fa-check-circle fa-2x"></i></i>
+                            <i v-else key="impValConv" class="background-red" aria-hidden="true"><i class="fa fa-times fa-2x"></i></i>
+                        </span>
+                    </td>
+                    <td>${{importeOutConvenio}}.- 
+                        <span v-show="showIcon">
+                            <i v-if="importeValidOutConv" key="impValOutConv" class="background-green" aria-hidden="true"><i class="fa fa-check-circle fa-2x"></i></i>
+                            <i v-else key="impValOutConv" class="background-red" aria-hidden="true"><i class="fa fa-times fa-2x"></i></i>
+                        </span>
+                    </td>
                 </tr>
                 <tr class="clearfix">
                     <td><label><strong>Seguro</strong></label></td>
-                    <td>${{seguroConvenio}}.-</td>
-                    <td>${{seguroOutConvenio}}.-</td>
+                    <td>${{seguroConv}}.-</td>
+                    <td>${{seguroOutConv}}.-</td>
                 </tr>
             </table>    
         </div>
@@ -78,11 +88,11 @@
             </div>
             <div class="clearfix row-sep">
                 <label class="col-md-2"><strong>Convenio</strong></label>
-                <input type="number" id="coutaMaxConv" readonly>
+                <input type="number" id="coutaMaxConv" readonly />
             </div>
-            <div class="clearfix row-sep    ">
+            <div class="clearfix row-sep">
                 <label class="col-md-2"><strong>Fuera de convenio</strong></label>
-                <input type="number" id="coutaMaxOutConv" readonly>
+                <input type="number" id="coutaMaxOutConv" readonly />{{topeMaxOutConvenio}}
             </div>
         </div>
 
