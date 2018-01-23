@@ -75,6 +75,11 @@
                     </td>
                 </tr>
                 <tr class="clearfix">
+                    <td><label><strong>Couta máxima permitida</strong></label></td>
+                    <td>${{topeMaxConvenio}}.-</td>
+                    <td>${{topeMaxOutConvenio}}.-</td>
+                </tr>
+                <tr class="clearfix">
                     <td><label><strong>Seguro</strong></label></td>
                     <td>${{seguroConv}}.-</td>
                     <td>${{seguroOutConv}}.-</td>
@@ -82,20 +87,21 @@
             </table>    
         </div>
         <!-- Tercera grilla -->
+        <!--
         <div class="row">
             <div class="clearfix">
                 <label class="col-md-2"><strong>Couta máxima permitida</strong></label>
             </div>
             <div class="clearfix row-sep">
                 <label class="col-md-2"><strong>Convenio</strong></label>
-                <input type="number" id="coutaMaxConv" readonly />
+                <input type="number" id="coutaMaxConv" readonly />{{topeMaxConvenio}}
             </div>
             <div class="clearfix row-sep">
                 <label class="col-md-2"><strong>Fuera de convenio</strong></label>
                 <input type="number" id="coutaMaxOutConv" readonly />{{topeMaxOutConvenio}}
             </div>
         </div>
-
+        -->
         <div class="clearfix">
             <label class="label label-blue col-md-12 text-center"><strong>Atención: </strong>El simulador de préstamos 
                 <span class="subrayado">no es un formulario</span>. Los cálculos son siempre 
@@ -137,7 +143,7 @@
                 <ul>
                     <li>El monto solicitado no debe superar la cantidad de sueldos brutos establecidos.</li>
                     <li>La cantidad de cuotas debe ser entre 2 y 60 meses.</li>
-                    <li>El importe de la cuota no debe superar el 30% del sueldo bruto.</li>
+                    <li>El importe de la cuota no debe superar la cuota máxima permitida.</li>
                 </ul>
               </slot>
             </div>

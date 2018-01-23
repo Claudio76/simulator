@@ -14,7 +14,8 @@ new Vue({
             this.temIvaOutConvenio = data.temIvaOutConvenio;
             this.cantSueldBrutoConvenio = data.cantSueldBrutoConvenio;
             this.cantSueldBrutoOutConvenio = data.cantSueldBrutoOutConvenio;
-            console.log(response.body);
+            this.porcMaxSueldoConvenio = data.porcMaxSueldoConvenio;
+            this.porcMaxSueldoOutConvenio = data.porcMaxSueldoOutConvenio;
         });
     },
 
@@ -28,6 +29,8 @@ new Vue({
         temIvaOutConvenio: 3,
         cantSueldBrutoConvenio: 6,
         cantSueldBrutoOutConvenio: 7,
+        porcMaxSueldoConvenio: 0,
+        porcMaxSueldoOutConvenio: 0,
 
         cuotaMensualConv: 4,
         cuotaMensualOutConv: 4,
@@ -46,9 +49,7 @@ new Vue({
         outConvenio: 0,
 
         montoConvenioStatus: '',
-        montoOutConvenioStatus: '',
-        topeMaxConvenio:0,
-        topeMaxOutConvenio:0
+        montoOutConvenioStatus: ''
     },
 
     methods:{
@@ -70,30 +71,28 @@ new Vue({
             }
         },
 
+        importeConvIsValid: function(){
+            if(Number.parseFloat(this.importeConvenio) < Number.parseFloat(this.topeMaxConvenio)){
+                return this.importeValidConv = true;
+            }else{
+                return this.importeValidConv = false;
+            }
+        },
+
+        importeOutConvIsValid: function(){
+            if(Number.parseFloat(this.importeOutConvenio) < Number.parseFloat(this.topeMaxOutConvenio)){
+                return this.importeValidOutConv = true;
+            }else{
+                return this.importeValidOutConv = false;
+            }
+        },
+        
         validar: function(){
             this.capitalSoliConvIsValid();
             this.capitalSoliOutConvIsValid();
             this.importeConvIsValid();
             this.importeOutConvIsValid();
             this.showIcon = true;
-        },
-
-        importeConvIsValid: function(){
-            this.topeMaxConvenio = (this.sueldoBruto / 100) * 30;
-            if(this.importeConvenio > this.topeMaxConvenio){
-                return this.importeValidConv = false;
-            }else{
-                return this.importeValidConv = true;
-            }
-        },
-
-        importeOutConvIsValid: function(){
-            this.topeMaxOutConvenio = (this.sueldoBruto / 100) * 30;
-            if(this.importeOutConvenio > this.topeMaxOutConvenio){
-                return this.importeValidOutConv = false;
-            }else{
-                return this.importeValidOutConv = true;
-            }
         }
     },
 
@@ -115,7 +114,7 @@ new Vue({
         },
 
         calculaImporteMaximoConvenio: function(){
-            return this.sueldoBruto * this.cantSueldBrutoConvenio;
+            return Number.parseFloat(this.sueldoBruto * this.cantSueldBrutoConvenio).toFixed(2);
         },
 
         seguroConv: function(){
@@ -124,6 +123,14 @@ new Vue({
 
         seguroOutConv: function(){
             return Number.parseFloat((this.capitalSolic/100)* 0.5).toFixed(2);
+        },
+
+        topeMaxConvenio: function(){
+            return Number.parseFloat((this.sueldoBruto / 100) * (this.porcMaxSueldoConvenio * 100)).toFixed(2);
+        },
+
+        topeMaxOutConvenio: function(){
+            return Number.parseFloat((this.sueldoBruto / 100) * (this.porcMaxSueldoOutConvenio * 100)).toFixed(2);
         }
         
     }
