@@ -10,6 +10,8 @@ new Vue({
             var data = response.body;
             this.tnaConvenio = data.tnaConvenio;
             this.tnaOutConvenio = data.tnaOutConvenio;
+            this.tnaConvenioOver12 = data.tnaConvenioOver12;
+            this.tnaOutConvenioOver12 = data.tnaOutConvenioOver12;
             this.temIvaConvenio = data.temIvaConvenio;
             this.temIvaOutConvenio = data.temIvaOutConvenio;
             this.cantSueldBrutoConvenio = data.cantSueldBrutoConvenio;
@@ -23,8 +25,10 @@ new Vue({
         textTest : "Texto de prueba para VueJs", //Este tiene que volar.
         
         //Vienen de properties.
-        tnaConvenio: 2,
-        tnaOutConvenio: 2,
+        tnaConvenio: 0.29,
+        tnaOutConvenio: 0.29,
+        tnaConvenioOver12: 0.33,
+        tnaOutConvenioOver12: 0.33,
         temIvaConvenio: 3,
         temIvaOutConvenio: 3,
         cantSueldBrutoConvenio: 6,
@@ -49,7 +53,9 @@ new Vue({
         outConvenio: 0,
 
         montoConvenioStatus: '',
-        montoOutConvenioStatus: ''
+        montoOutConvenioStatus: '',
+        tnaConvenioScreen: Number.parseFloat(0.29 * 100).toFixed(2),
+        tnaOutConvenioScreen: Number.parseFloat(0.29 * 100).toFixed(2)
     },
 
     methods:{
@@ -96,21 +102,25 @@ new Vue({
         }
     },
 
+    watch:{
+        plazo: function(){
+            if(this.plazo <= 12){
+                this.tnaConvenioScreen = Number.parseFloat(this.tnaConvenio * 100).toFixed(2);
+                this.tnaOutConvenioScreen = Number.parseFloat(this.tnaOutConvenio * 100).toFixed(2);
+            }else{
+                this.tnaConvenioScreen = Number.parseFloat(this.tnaConvenioOver12 * 100).toFixed(2);
+                this.tnaOutConvenioScreen = Number.parseFloat(this.tnaOutConvenioOver12 * 100).toFixed(2);
+            }
+        }
+    },
+
     computed:{
         importeConvenio: function(){
-            return Number.parseFloat(this.cuotaMensualConv = (1 + (this.tnaConvenio / 12)) * (this.capitalSolic / this.plazo)).toFixed(2);
+            return Number.parseFloat(this.cuotaMensualConv = (1 + ((this.tnaConvenioScreen / 100) / 12)) * (this.capitalSolic / this.plazo)).toFixed(2);
         },
 
         importeOutConvenio: function(){
-            return Number.parseFloat(this.cuotaMensualConv = (1 + (this.tnaConvenio / 12)) * (this.capitalSolic / this.plazo)).toFixed(2);
-        },
-
-        tnaConvenioScreen: function(){
-            return Number.parseFloat(this.tnaConvenio * 100).toFixed(2);
-        },
-
-        tnaOutConvenioScreen: function(){
-            return Number.parseFloat(this.tnaOutConvenio * 100).toFixed(2);
+            return Number.parseFloat(this.cuotaMensualConv = (1 + ((this.tnaOutConvenioScreen / 100) / 12)) * (this.capitalSolic / this.plazo)).toFixed(2);
         },
 
         calculaImporteMaximoConvenio: function(){

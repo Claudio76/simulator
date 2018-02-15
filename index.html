@@ -13,6 +13,7 @@
 </head>
 <body>
     <div id="prestamos" class="container">
+        <div class="col-md-offset-3">
         <form action="" @submit.prevent="">
             <div class="row row-sep">
                     <label class="col-md-2"><strong>Monto solicitado:</strong></label>
@@ -20,9 +21,9 @@
                     <i class="fa fa-info-circle fa-2x label-blue" aria-hidden="true" @click="showModal = true"></i>
                     <span v-show="showIcon">
                         <i v-if="montoConvenioStatus && montoOutConvenioStatus" key="convVal" class="background-green" aria-hidden="true"><i class="fa fa-check-circle fa-2x"></i></i>
-                        <i v-if="!montoConvenioStatus" key="convNotVal" class="background-red" aria-hidden="true"><i class="fa fa-times">Convenio - Máximo {{cantSueldBrutoConvenio}} sueldos brutos</i></i>
-                        <i v-if="!montoOutConvenioStatus" key="outConvNotVal" class="background-red" aria-hidden="true"><i class="fa fa-times">Fuera de convenio  - Máximo {{cantSueldBrutoOutConvenio}} sueldos brutos</i></i>
+                        <i v-if="!montoConvenioStatus" key="convNotVal" class="background-red" aria-hidden="true"><i class="fa fa-times"> Máximo {{cantSueldBrutoConvenio}} sueldos brutos</i></i>
                         <!-- 
+                        <i v-if="!montoOutConvenioStatus" key="outConvNotVal" class="background-red" aria-hidden="true"><i class="fa fa-times">Fuera de convenio  - Máximo {{cantSueldBrutoOutConvenio}} sueldos brutos</i></i>
                         <i v-if="montoOutConvenioStatus" key="outConvVal" class="background-green" aria-hidden="true"><i class="fa fa-check-circle"> Fuera de convenio</i></i>
                         <i v-else key="outConvVal" class="background-red" aria-hidden="true"><i class="fa fa-times fa-2x"></i></i>
                         -->
@@ -40,68 +41,57 @@
                 <input type="submit" value="Validar" class="btn btn-success" @click="validar">   
             </div>            
         </form>
+        </div>
         <!-- Segunda Grilla -->
         <div class="container">
-            <table class="table table-hover table-striped">          
-                    <!-- Aplicadas en las celdas (<td> o <th>) -->
-                <tr class="clearfix">
-                  <th><label><strong>Tasas e importes</strong></label></th>
-                  <th><label><strong>Convenio</strong></label></th>
-                  <th><label><strong>Fuera de convenio</strong></label></th>
-                </tr>
-                <tr class="clearfix">
-                    <td><label><strong>T.N.A.</strong></label></td>
-                    <td>{{tnaConvenioScreen}}%</td>
-                    <td>{{tnaOutConvenioScreen}}%</td>
-                </tr>
-                <tr class="clearfix">
-                    <td><label><strong>Tem. I.V.A. incl.</strong></label></td>
-                    <td>{{temIvaConvenio}}%</td>
-                    <td>{{temIvaOutConvenio}}%</td>
-                </tr>
-                <tr class="clearfix">
-                    <td><label><strong>Importe cuota mensual</strong></label></td>
-                    <td>${{importeConvenio}}.- 
-                        <span v-show="showIcon">
-                            <i v-if="importeValidConv" key="impValConv" class="background-green" aria-hidden="true"><i class="fa fa-check-circle fa-2x"></i></i>
-                            <i v-else key="impValConv" class="background-red" aria-hidden="true"><i class="fa fa-times fa-2x"></i></i>
-                        </span>
-                    </td>
-                    <td>${{importeOutConvenio}}.- 
-                        <span v-show="showIcon">
-                            <i v-if="importeValidOutConv" key="impValOutConv" class="background-green" aria-hidden="true"><i class="fa fa-check-circle fa-2x"></i></i>
-                            <i v-else key="impValOutConv" class="background-red" aria-hidden="true"><i class="fa fa-times fa-2x"></i></i>
-                        </span>
-                    </td>
-                </tr>
-                <tr class="clearfix">
-                    <td><label><strong>Couta máxima permitida</strong></label></td>
-                    <td>${{topeMaxConvenio}}.-</td>
-                    <td>${{topeMaxOutConvenio}}.-</td>
-                </tr>
-                <tr class="clearfix">
-                    <td><label><strong>Seguro</strong></label></td>
-                    <td>${{seguroConv}}.-</td>
-                    <td>${{seguroOutConv}}.-</td>
-                </tr>
-            </table>    
+            <div class="col-md-offset-3 col-md-6">
+                <table class="table table-hover table-striped">          
+                        <!-- Aplicadas en las celdas (<td> o <th>) -->
+                    <tr class="clearfix">
+                    <th><label><strong>Tasas e importes</strong></label></th>
+                    <th><label><strong>Condiciones</strong></label></th>
+                    <!-- <th><label><strong>Fuera de convenio</strong></label></th> -->
+                    </tr>
+                    <tr class="clearfix">
+                        <td><label><strong>T.N.A.</strong></label></td>
+                        <td>{{tnaConvenioScreen}}%</td>
+                        <!-- <td>{{tnaOutConvenioScreen}}%</td> -->
+                    </tr>
+                    <tr class="clearfix">
+                        <td><label><strong>Tem. I.V.A. incl.</strong></label></td>
+                        <td>{{temIvaConvenio}}%</td>
+                        <!-- <td>{{temIvaOutConvenio}}%</td> -->
+                    </tr>
+                    <tr class="clearfix">
+                        <td><label><strong>Importe cuota mensual</strong></label></td>
+                        <td>${{importeConvenio}}.- 
+                            <span v-show="showIcon">
+                                <i v-if="importeValidConv" key="impValConv" class="background-green" aria-hidden="true"><i class="fa fa-check-circle fa-2x"></i></i>
+                                <i v-else key="impValConv" class="background-red" aria-hidden="true"><i class="fa fa-times fa-2x"></i></i>
+                            </span>
+                        </td>
+                        <!--
+                        <td>${{importeOutConvenio}}.- 
+                            <span v-show="showIcon">
+                                <i v-if="importeValidOutConv" key="impValOutConv" class="background-green" aria-hidden="true"><i class="fa fa-check-circle fa-2x"></i></i>
+                                <i v-else key="impValOutConv" class="background-red" aria-hidden="true"><i class="fa fa-times fa-2x"></i></i>
+                            </span>
+                        </td>
+                        -->
+                    </tr>
+                    <tr class="clearfix">
+                        <td><label><strong>Couta máxima permitida</strong></label></td>
+                        <td>${{topeMaxConvenio}}.-</td>
+                        <!-- <td>${{topeMaxOutConvenio}}.-</td> -->
+                    </tr>
+                    <tr class="clearfix">
+                        <td><label><strong>Seguro</strong></label></td>
+                        <td>${{seguroConv}}.-</td>
+                        <!-- <td>${{seguroOutConv}}.-</td> -->
+                    </tr>
+                </table>
+            </div>    
         </div>
-        <!-- Tercera grilla -->
-        <!--
-        <div class="row">
-            <div class="clearfix">
-                <label class="col-md-2"><strong>Couta máxima permitida</strong></label>
-            </div>
-            <div class="clearfix row-sep">
-                <label class="col-md-2"><strong>Convenio</strong></label>
-                <input type="number" id="coutaMaxConv" readonly />{{topeMaxConvenio}}
-            </div>
-            <div class="clearfix row-sep">
-                <label class="col-md-2"><strong>Fuera de convenio</strong></label>
-                <input type="number" id="coutaMaxOutConv" readonly />{{topeMaxOutConvenio}}
-            </div>
-        </div>
-        -->
         <div class="clearfix">
             <label class="label label-blue col-md-12 text-center"><strong>Atención: </strong>El simulador de préstamos 
                 <span class="subrayado">no es un formulario</span>. Los cálculos son siempre 
