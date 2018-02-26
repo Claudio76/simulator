@@ -22,11 +22,6 @@
                     <span v-show="showIcon">
                         <i v-if="montoConvenioStatus && montoOutConvenioStatus" key="convVal" class="background-green" aria-hidden="true"><i class="fa fa-check-circle fa-2x"></i></i>
                         <i v-if="!montoConvenioStatus" key="convNotVal" class="background-red" aria-hidden="true"><i class="fa fa-times"> Máximo {{cantSueldBrutoConvenio}} sueldos brutos</i></i>
-                        <!-- 
-                        <i v-if="!montoOutConvenioStatus" key="outConvNotVal" class="background-red" aria-hidden="true"><i class="fa fa-times">Fuera de convenio  - Máximo {{cantSueldBrutoOutConvenio}} sueldos brutos</i></i>
-                        <i v-if="montoOutConvenioStatus" key="outConvVal" class="background-green" aria-hidden="true"><i class="fa fa-check-circle"> Fuera de convenio</i></i>
-                        <i v-else key="outConvVal" class="background-red" aria-hidden="true"><i class="fa fa-times fa-2x"></i></i>
-                        -->
                     </span>
             </div>
             <div class="row row-sep">
@@ -38,7 +33,7 @@
                 <input type="number" class="text-right col-md-2" min="2" max="60" name="txtCuotas" id="txtCuotas" v-model.number="plazo" required />
             </div>         
             <div class="row text-right row-sep">
-                <input type="submit" value="Validar" class="btn btn-success" @click="validar">   
+                <input id="btnValidar" type="submit" value="Validar" class="btn btn-success" @click="validar">   
             </div>            
         </form>
         </div>
@@ -50,17 +45,14 @@
                     <tr class="clearfix">
                     <th><label><strong>Tasas e importes</strong></label></th>
                     <th><label><strong>Condiciones</strong></label></th>
-                    <!-- <th><label><strong>Fuera de convenio</strong></label></th> -->
                     </tr>
                     <tr class="clearfix">
                         <td><label><strong>T.N.A.</strong></label></td>
                         <td>{{tnaConvenioScreen}}%</td>
-                        <!-- <td>{{tnaOutConvenioScreen}}%</td> -->
                     </tr>
                     <tr class="clearfix">
                         <td><label><strong>Tem. I.V.A. incl.</strong></label></td>
                         <td>{{temIvaConvenio}}%</td>
-                        <!-- <td>{{temIvaOutConvenio}}%</td> -->
                     </tr>
                     <tr class="clearfix">
                         <td><label><strong>Importe cuota mensual</strong></label></td>
@@ -70,24 +62,14 @@
                                 <i v-else key="impValConv" class="background-red" aria-hidden="true"><i class="fa fa-times fa-2x"></i></i>
                             </span>
                         </td>
-                        <!--
-                        <td>${{importeOutConvenio}}.- 
-                            <span v-show="showIcon">
-                                <i v-if="importeValidOutConv" key="impValOutConv" class="background-green" aria-hidden="true"><i class="fa fa-check-circle fa-2x"></i></i>
-                                <i v-else key="impValOutConv" class="background-red" aria-hidden="true"><i class="fa fa-times fa-2x"></i></i>
-                            </span>
-                        </td>
-                        -->
                     </tr>
                     <tr class="clearfix">
                         <td><label><strong>Couta máxima permitida</strong></label></td>
                         <td>${{topeMaxConvenio}}.-</td>
-                        <!-- <td>${{topeMaxOutConvenio}}.-</td> -->
                     </tr>
                     <tr class="clearfix">
                         <td><label><strong>Seguro</strong></label></td>
                         <td>${{seguroConv}}.-</td>
-                        <!-- <td>${{seguroOutConv}}.-</td> -->
                     </tr>
                 </table>
             </div>    
@@ -131,9 +113,10 @@
             <div class="modal-body">
               <slot name="body">
                 <ul>
-                    <li>El monto solicitado no debe superar la cantidad de sueldos brutos establecidos.</li>
-                    <li>La cantidad de cuotas debe ser entre 2 y 60 meses.</li>
-                    <li>El importe de la cuota no debe superar la cuota máxima permitida.</li>
+                    <li>El monto máximo a otorgar en concepto de Préstamo personal será de hasta 6 (seis) sueldos brutos.</li>
+                    <li>La RCI (relación cuota/ ingreso) no puede superar el 25% del sueldo neto del solicitante.</li>
+                    <li>Plazo: máximo 60 meses</li>
+                    <li>Moneda: Pesos</li>
                 </ul>
               </slot>
             </div>
