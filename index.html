@@ -28,10 +28,29 @@
                 <label class="col-md-2"><strong>Sueldo bruto:</strong></label>
                 <input type="number" class="col-md-2 text-right" name="txtSueldoBruto" id="txtSueldoBruto" v-model.number="sueldoBruto" required />
             </div>
+
+            <!--
             <div class="row row-sep">
                 <label class="col-md-2"><strong>Cuotas:</strong></label>
                 <input type="number" class="text-right col-md-2" min="2" max="60" name="txtCuotas" id="txtCuotas" v-model.number="plazo" required />
-            </div>         
+            </div>
+            -->
+            <div class="row row-sep">
+                <label class="col-md-2"><strong>Cuotas:</strong></label>         
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle dropCoutas"
+                            data-toggle="dropdown">
+                    Elija cantidad <span class="caret"></span>
+                    </button>                
+                    <ul class="dropdown-menu scrollable-menu" role="menu">
+                        <span v-for="i in 60">
+                            <li class="text-center">{{i}}</li>
+                        </span>
+                    </ul>
+                </div>
+            </div>
+            
+            
             <div class="row text-right row-sep">
                 <input id="btnValidar" type="submit" value="Validar" class="btn btn-success" @click="validar">   
             </div>            
@@ -51,10 +70,6 @@
                         <td>{{tnaConvenioScreen}}%</td>
                     </tr>
                     <tr class="clearfix">
-                        <td><label><strong>Tem. I.V.A. incl.</strong></label></td>
-                        <td>{{temIvaConvenio}}%</td>
-                    </tr>
-                    <tr class="clearfix">
                         <td><label><strong>Importe cuota mensual</strong></label></td>
                         <td>${{importeConvenio}}.- 
                             <span v-show="showIcon">
@@ -67,10 +82,12 @@
                         <td><label><strong>Couta máxima permitida</strong></label></td>
                         <td>${{topeMaxConvenio}}.-</td>
                     </tr>
+                    <!--
                     <tr class="clearfix">
                         <td><label><strong>Seguro</strong></label></td>
                         <td>${{seguroConv}}.-</td>
                     </tr>
+                    -->
                 </table>
             </div>    
         </div>

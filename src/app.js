@@ -12,7 +12,6 @@ new Vue({
             this.tnaOutConvenio = data.tnaOutConvenio;
             this.tnaConvenioOver12 = data.tnaConvenioOver12;
             this.tnaOutConvenioOver12 = data.tnaOutConvenioOver12;
-            this.temIvaConvenio = data.temIvaConvenio;
             this.temIvaOutConvenio = data.temIvaOutConvenio;
             this.cantSueldBrutoConvenio = data.cantSueldBrutoConvenio;
             this.cantSueldBrutoOutConvenio = data.cantSueldBrutoOutConvenio;

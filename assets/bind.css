@@ -3,6 +3,16 @@
     margin-bottom: 10px;
 }
 
+.scrollable-menu {
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden;
+}
+
+.dropCoutas{
+  width: 148px;
+}
+
 .row-2-grid{
     margin-right: 10px;
 }
