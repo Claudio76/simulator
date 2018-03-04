@@ -1,0 +1,25 @@
+{
+  "name": "prestamos-bind",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "mail": ""
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "fontawesome": "^4.7.2",
+    "jquery": "^3.3.1",
+    "vue": "^2.5.13",
+    "vue-resource": "^1.4.0"
+  }
+}
