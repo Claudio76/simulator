@@ -76,7 +76,6 @@ new Vue({
         capitalSolic: 1000, 
         sueldoBruto: 10000,
         plazo:2,
-        qtyCuotas:4,
 
         convenio: 0,
         outConvenio: 0,
@@ -84,7 +83,9 @@ new Vue({
         montoConvenioStatus: '',
         montoOutConvenioStatus: '',
         tnaConvenioScreen: Number.parseFloat(0.29 * 100).toFixed(2),
-        tnaOutConvenioScreen: Number.parseFloat(0.29 * 100).toFixed(2)
+        tnaOutConvenioScreen: Number.parseFloat(0.29 * 100).toFixed(2),
+
+        selected:''
     },
 
     methods:{

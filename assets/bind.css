@@ -9,8 +9,16 @@
   overflow-x: hidden;
 }
 
-.dropCoutas{
+select {
   width: 148px;
+  text-align: center;
+  text-align-last: center;
+  /* webkit*/
+}
+option {
+  text-align: center;
+  text-align-last: center;
+  /* reset to left*/
 }
 
 .row-2-grid{

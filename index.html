@@ -5,12 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Préstamos Bind</title>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/bind.css">
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/6d58b2f27d.js"></script>
 </head>
@@ -40,16 +37,13 @@
             -->
             <div class="row row-sep">
                 <label class="col-md-2"><strong>Cuotas:</strong></label>         
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle dropCoutas"
-                            data-toggle="dropdown">
-                    {{qtyCuotas}} <span class="caret text-right"></span>
-                    </button>                
-                    <ul class="dropdown-menu scrollable-menu" role="menu">
-                        <span v-for="i in 10">
-                            <li class="text-center" value="i" >{{i}}</li>
-                        </span>
-                    </ul>
+                <div>
+                    <select class="scrollable-menu" v-model.number="plazo">
+                        <!-- <option disabled value="">Seleccione plazo</option> -->
+                        <option v-show="option > 1" v-for="option in 60" v-bind:value="option">
+                            {{ option }}
+                        </option>
+                    </select>
                 </div>
             </div>            
             
@@ -99,7 +93,6 @@
                 <span class="subrayado">aproximados y no podrán tomarse como definitivos.</span>
             </label>
         </div>
-        {{i}}
 
         <!-- modal -->
         <modal v-if="showModal" @close="showModal = false">
@@ -111,9 +104,7 @@
         </modal>
 
     </div>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script> -->
     <script src="./node_modules/vue/dist/vue.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.3.4/vue-resource.js"></script> -->
     <script src="./node_modules/vue-resource/dist/vue-resource.js"></script>
     <script src="./src/app.js"></script>
 </body>
