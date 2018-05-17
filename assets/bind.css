@@ -9,8 +9,18 @@
   overflow-x: hidden;
 }
 
+.logo-banco {
+  width: 256px;
+  height: 50px;
+  /* background-image: url(../assets/logo-banco-industrial.png); */
+  background-repeat: no-repeat;
+  background-color: none;
+  background-position: left top;
+  background-size: 256px 50px;
+}
+
 select {
-  width: 148px;
+  width: 132px;
   text-align: center;
   text-align-last: center;
   /* webkit*/

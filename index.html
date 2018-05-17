@@ -13,10 +13,13 @@
 </head>
 <body>
     <div id="prestamos" class="container">
-        <div class="col-md-offset-3">
+        <div >
+            <img class="logo-banco" src="./assets/logo-banco-industrial.png">
+        </div>
+        <div class="col-md-offset-4">
         <form action="" @submit.prevent="">
             <div class="row row-sep">
-                    <label class="col-md-2"><strong>Monto solicitado:</strong></label>
+                    <label class="col-md-3"><strong>Monto solicitado:</strong></label>
                     <input class="col-md-2 text-right row-2-grid" type="number" name="txtMontoSolicitado" id="txtMntSol" v-model.number="capitalSolic" required />
                     <i class="fa fa-info-circle fa-2x label-blue" aria-hidden="true" @click="showModal = true"></i>
                     <span v-show="showIcon">
@@ -25,7 +28,7 @@
                     </span>
             </div>
             <div class="row row-sep">
-                <label class="col-md-2"><strong>Sueldo bruto:</strong></label>
+                <label class="col-md-3"><strong>Sueldo bruto:</strong></label>
                 <input type="number" class="col-md-2 text-right" name="txtSueldoBruto" id="txtSueldoBruto" v-model.number="sueldoBruto" required />
             </div>
 
@@ -36,7 +39,7 @@
             </div>
             -->
             <div class="row row-sep">
-                <label class="col-md-2"><strong>Cuotas:</strong></label>         
+                <label class="col-md-3"><strong>Cuotas:</strong></label>         
                 <div>
                     <select class="scrollable-menu" v-model.number="plazo">
                         <!-- <option disabled value="">Seleccione plazo</option> -->
@@ -67,7 +70,7 @@
                     </tr>
                     <tr class="clearfix">
                         <td><label><strong>Importe cuota mensual</strong></label></td>
-                        <td>${{importeConvenio}}.- 
+                        <td>${{valorCuota}}.-
                             <span v-show="showIcon">
                                 <i v-if="importeValidConv" key="impValConv" class="background-green" aria-hidden="true"><i class="fa fa-check-circle fa-2x"></i></i>
                                 <i v-else key="impValConv" class="background-red" aria-hidden="true"><i class="fa fa-times fa-2x"></i></i>

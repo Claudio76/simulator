@@ -108,7 +108,7 @@ new Vue({
         },
 
         importeConvIsValid: function(){
-            if(Number.parseFloat(this.importeConvenio) < Number.parseFloat(this.topeMaxConvenio)){
+            if(Number.parseFloat(this.valorCuota) < Number.parseFloat(this.topeMaxConvenio)){
                 return this.importeValidConv = true;
             }else{
                 return this.importeValidConv = false;
@@ -116,7 +116,7 @@ new Vue({
         },
 
         importeOutConvIsValid: function(){
-            if(Number.parseFloat(this.importeOutConvenio) < Number.parseFloat(this.topeMaxOutConvenio)){
+            if(Number.parseFloat(this.valorCuota) < Number.parseFloat(this.topeMaxOutConvenio)){
                 return this.importeValidOutConv = true;
             }else{
                 return this.importeValidOutConv = false;
@@ -145,8 +145,27 @@ new Vue({
     },
 
     computed:{
-        importeConvenio: function(){
-            return Number.parseFloat(this.cuotaMensualConv = (1 + ((this.tnaConvenioScreen / 100) / 12)) * (this.capitalSolic / this.plazo)).toFixed(2);
+        //importeConvenio: function(){
+        //    return Number.parseFloat(this.cuotaMensualConv = (1 + ((this.tnaConvenioScreen / 100) / 12)) * (this.capitalSolic / this.plazo)).toFixed(2);
+        //},
+        interestAnual : function(){
+            return this.tnaConvenioScreen / 100;
+        },
+
+        interestValue : function(){
+            return this.interestAnual / 12;
+        },
+
+        power : function(){
+            return Math.pow(1 + this.interestValue, this.plazo);
+        },
+
+        valorCuota:function(){
+            return Number.parseFloat((this.capitalSolic * this.interestValue * this.power) / (this.power - 1)).toFixed(2);
+        },
+
+        totalIntereses:function(){
+            return this.valorCuota * this.plazo - this.capitalSolic;
         },
 
         importeOutConvenio: function(){
