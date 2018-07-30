@@ -37,15 +37,14 @@ new Vue({
     created: function(){
         this.$http.get("./src/config/properties.json").then(response =>{
             var data = response.body;
-            this.tnaConvenio = data.tnaConvenio;
-            this.tnaOutConvenio = data.tnaOutConvenio;
-            this.tnaConvenioOver12 = data.tnaConvenioOver12;
-            this.tnaOutConvenioOver12 = data.tnaOutConvenioOver12;
             this.temIvaOutConvenio = data.temIvaOutConvenio;
             this.cantSueldBrutoConvenio = data.cantSueldBrutoConvenio;
             this.cantSueldBrutoOutConvenio = data.cantSueldBrutoOutConvenio;
             this.porcMaxSueldoConvenio = data.porcMaxSueldoConvenio;
             this.porcMaxSueldoOutConvenio = data.porcMaxSueldoOutConvenio;
+            this.interestLower = data.interestLower;
+            this.interestUpper = data.interestUpper;
+            this.limitInterestLower = data.limitInterestLower;
         });
     },
 
@@ -53,16 +52,16 @@ new Vue({
         textTest : "Texto de prueba para VueJs", //Este tiene que volar.
         
         //Vienen de properties.
-        tnaConvenio: 0.29,
-        tnaOutConvenio: 0.29,
-        tnaConvenioOver12: 0.33,
-        tnaOutConvenioOver12: 0.33,
         temIvaConvenio: 3,
         temIvaOutConvenio: 3,
         cantSueldBrutoConvenio: 6,
         cantSueldBrutoOutConvenio: 7,
         porcMaxSueldoConvenio: 0,
         porcMaxSueldoOutConvenio: 0,
+
+        interestLower : 0.1,
+        interestUpper : 0.2,
+        limitInterestLower : 24,
 
         cuotaMensualConv: 4,
         cuotaMensualOutConv: 4,
@@ -82,8 +81,7 @@ new Vue({
 
         montoConvenioStatus: '',
         montoOutConvenioStatus: '',
-        tnaConvenioScreen: Number.parseFloat(0.29 * 100).toFixed(2),
-        tnaOutConvenioScreen: Number.parseFloat(0.29 * 100).toFixed(2),
+        tnaConvenioScreen: Number.parseFloat(0.435 * 100).toFixed(2),
 
         selected:''
     },
@@ -134,20 +132,17 @@ new Vue({
 
     watch:{
         plazo: function(){
-            if(this.plazo <= 12){
-                this.tnaConvenioScreen = Number.parseFloat(this.tnaConvenio * 100).toFixed(2);
-                this.tnaOutConvenioScreen = Number.parseFloat(this.tnaOutConvenio * 100).toFixed(2);
+            if(this.plazo <= this.limitInterestLower){
+                this.tnaConvenioScreen = Number.parseFloat(this.interestLower * 100).toFixed(2);
+                this.tnaOutConvenioScreen = Number.parseFloat(this.interestLower * 100).toFixed(2);
             }else{
-                this.tnaConvenioScreen = Number.parseFloat(this.tnaConvenioOver12 * 100).toFixed(2);
-                this.tnaOutConvenioScreen = Number.parseFloat(this.tnaOutConvenioOver12 * 100).toFixed(2);
+                this.tnaConvenioScreen = Number.parseFloat(this.interestUpper * 100).toFixed(2);
+                this.tnaOutConvenioScreen = Number.parseFloat(this.interestUpper * 100).toFixed(2);
             }
         }
     },
 
     computed:{
-        //importeConvenio: function(){
-        //    return Number.parseFloat(this.cuotaMensualConv = (1 + ((this.tnaConvenioScreen / 100) / 12)) * (this.capitalSolic / this.plazo)).toFixed(2);
-        //},
         interestAnual : function(){
             return this.tnaConvenioScreen / 100;
         },
